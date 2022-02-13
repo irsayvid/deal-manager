@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Link } from '@mui/material'
 const theme = createTheme()
 
-export default function index(props) {
+export default function index() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main">
