@@ -3,51 +3,19 @@ import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 
-export default function DealerInfo() {
+export default function preferredRoute(props) {
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Material Info
+      <Typography variant="subtitle2" m={3} gutterBottom>
+        Preferred Route {props.id}
       </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <TextField
-            required
-            id="natureOfMaterial"
-            label="Nature of Material"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            type="number"
-            id="quantity"
-            label="Quantity"
-            helperText="Mention number of units"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            type="number"
-            id="weight"
-            label="Total Weight"
-            helperText="Mention in kilograms"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-
+      <Grid container spacing={3} ml={0.5}>
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="state"
-            name="state"
-            label="State/Province/Region"
+            id="fromstate"
+            name="fromstate"
+            label="From State"
             fullWidth
             variant="standard"
           />
@@ -55,9 +23,30 @@ export default function DealerInfo() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="city"
-            name="city"
-            label="City"
+            id="fromcity"
+            name="fromcity"
+            label="From City"
+            fullWidth
+            autoComplete="shipping address-level2"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="tostate"
+            name="tostate"
+            label="To State"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="tocity"
+            name="tocity"
+            label="To City"
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"

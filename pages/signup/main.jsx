@@ -68,6 +68,7 @@ export default function Main() {
         <Grid item xs={12}>
           <TextField
             required
+            type="number"
             id="mobile"
             name="mobile"
             label="Mobile Number"
@@ -77,7 +78,7 @@ export default function Main() {
           />
         </Grid>
         <Grid item xs={12}>
-          <FormControl sx={{ m: 1 }} variant="standard" fullWidth>
+          <FormControl variant="standard" fullWidth>
             <InputLabel htmlFor="standard-adornment-password">
               Password
             </InputLabel>

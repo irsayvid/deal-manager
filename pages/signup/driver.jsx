@@ -12,8 +12,8 @@ import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import DriverInfo from './DriverInfo'
 import Main from './Main'
-
-const steps = ['Basic Info', 'Vehicle and Experience Info']
+import PreferredRoutes from './preferredRoutes'
+const steps = ['Basic Info', 'Vehicle & Experience', 'Preferred Routes']
 
 function getStepContent(step) {
   switch (step) {
@@ -21,6 +21,8 @@ function getStepContent(step) {
       return <Main />
     case 1:
       return <DriverInfo />
+    case 2:
+      return <PreferredRoutes />
     default:
       throw new Error('Unknown step')
   }
@@ -73,8 +75,8 @@ export default function Checkout() {
                   Thank you for choosing us.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your can find the list of drivers at your current location
-                  from the dashboard.
+                  Your can find the list of dealers who chose you from the
+                  dashboard.
                 </Typography>
               </React.Fragment>
             ) : (
