@@ -10,6 +10,7 @@ datasource db {
 model Dealer {
   id               String   @id @default(cuid())
   username         String
+  email            String   @unique
   password         String
   mobileNumber     String
   materialType     String
@@ -24,6 +25,7 @@ model Dealer {
 model Driver {
   id                String   @id @default(cuid())
   username          String
+  email             String   @unique
   password          String
   age               Int
   truckNumber       String
