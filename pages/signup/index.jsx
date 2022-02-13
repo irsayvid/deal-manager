@@ -13,8 +13,8 @@ export default function index(props) {
     <ThemeProvider theme={theme}>
       <Container component="main">
         <Grid container spacing={6}>
-          <Grid item xs={6}>
-            <Link href="#" underline="none">
+          <Grid item xs={12} sm={6}>
+            <Link href="/signup/dealer" underline="none">
               <Box
                 sx={{
                   display: 'flex',
@@ -46,8 +46,8 @@ export default function index(props) {
             </Link>
           </Grid>
 
-          <Grid item xs={6}>
-            <Link href="#" underline="none">
+          <Grid item xs={12} sm={6}>
+            <Link href="/signup/driver" underline="none">
               <Box
                 sx={{
                   display: 'flex',
