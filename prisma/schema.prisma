@@ -9,7 +9,8 @@ datasource db {
 
 model Dealer {
   id               String   @id @default(cuid())
-  name             String
+  username         String
+  password         String
   mobileNumber     String
   materialType     String
   weightOfMaterial Int
@@ -22,7 +23,8 @@ model Dealer {
 
 model Driver {
   id                String   @id @default(cuid())
-  name              String
+  username          String
+  password          String
   age               Int
   truckNumber       String
   mobileNumber      String
