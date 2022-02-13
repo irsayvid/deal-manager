@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,47 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Dealer {
+  id               String   @id @default(cuid())
+  name             String
+  mobileNumber     String
+  materialType     String
+  weightOfMaterial Int
+  quantity         Int
+  city             String
+  state            String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @default(now())
+}
+
+model Driver {
+  id                String   @id @default(cuid())
+  name              String
+  age               Int
+  truckNumber       String
+  mobileNumber      String
+  truckCapacity     Int
+  transporterName   String
+  drivingExperience Int
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @default(now())
+  Route             Route[]
+}
+
+model Route {
+  id        String    @id @default(cuid())
+  state     String
+  city      String
+  routeType RouteType
+  driverId  String
+  driver    Driver    @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+enum RouteType {
+  TO
+  FROM
 }
