@@ -6,6 +6,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 import GlobalStyles from '@mui/material/GlobalStyles'
+import NextLink from 'next/link'
 
 function PricingContent() {
   return (
@@ -21,26 +22,38 @@ function PricingContent() {
         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            Company name
-          </Typography>
-          <nav>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="/"
-              underline="hover"
-              sx={{ my: 1, mx: 1.5 }}
+          <NextLink href="/">
+            <Typography
+              variant="h6"
+              color="inherit"
+              noWrap
+              sx={{ flexGrow: 1, cursor: 'pointer' }}
             >
-              Home
-            </Link>
+              Deal Manager
+            </Typography>
+          </NextLink>
+          <nav>
+            <NextLink href="/">
+              <Link
+                variant="button"
+                color="text.primary"
+                underline="hover"
+                sx={{ my: 1, mx: 1.5 }}
+              >
+                Home
+              </Link>
+            </NextLink>
           </nav>
-          <Button href="/signup" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-            Signup
-          </Button>
-          <Button href="/login" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-            Signin
-          </Button>
+          <NextLink href="/signup">
+            <Button variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+              Signup
+            </Button>
+          </NextLink>
+          <NextLink href="/login">
+            <Button variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+              Login
+            </Button>
+          </NextLink>
         </Toolbar>
       </AppBar>
     </React.Fragment>

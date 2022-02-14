@@ -6,15 +6,19 @@ import Container from '@mui/material/Container'
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Link } from '@mui/material'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
+
 const theme = createTheme()
 
-export default function index() {
+export default function SignupIndex() {
+  const router = useRouter()
   return (
     <ThemeProvider theme={theme}>
       <Container component="main">
         <Grid container spacing={6}>
           <Grid item xs={12} sm={6}>
-            <Link href="/signup/dealer" underline="none">
+            <NextLink href="/signup/dealer" underline="none">
               <Box
                 sx={{
                   display: 'flex',
@@ -24,10 +28,10 @@ export default function index() {
                     color: 'primary.main',
                     opacity: [0.9, 0.8, 0.7],
                   },
-
                   borderColor: 'primary.dark',
                   borderBottom: 2,
                   justifyContent: 'space-between',
+                  cursor: 'pointer',
                 }}
               >
                 <Typography
@@ -43,11 +47,11 @@ export default function index() {
                 </Typography>
                 <ArrowRightAltIcon sx={{ gridArea: 'icon', fontSize: 40 }} />
               </Box>
-            </Link>
+            </NextLink>
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Link href="/signup/driver" underline="none">
+            <Link onClick={() => router.push('/signup/driver')}>
               <Box
                 sx={{
                   display: 'flex',
@@ -57,7 +61,7 @@ export default function index() {
                     color: 'primary.main',
                     opacity: [0.9, 0.8, 0.7],
                   },
-
+                  curosr: 'pointer',
                   borderColor: 'primary.dark',
                   borderBottom: 2,
                   justifyContent: 'space-between',
