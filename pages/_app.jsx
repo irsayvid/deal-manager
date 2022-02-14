@@ -12,18 +12,13 @@ function MyApp({ Component, pageProps }) {
   return (
     <AuthContextProvider>
       <NavBar />
-      <Container
-        component="main"
-        sx={{ minHeight: '78vh', display: 'flex', alignItems: 'center' }}
-      >
-        {router.pathname.startsWith('/dashboard') ? (
-          <ProtectedRoute>
-            <Component {...pageProps} />
-          </ProtectedRoute>
-        ) : (
+      {router.pathname.startsWith('/dashboard') ? (
+        <ProtectedRoute>
           <Component {...pageProps} />
-        )}
-      </Container>
+        </ProtectedRoute>
+      ) : (
+        <Component {...pageProps} />
+      )}
       <Footer />
     </AuthContextProvider>
   )

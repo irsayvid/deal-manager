@@ -11,6 +11,7 @@ export const AuthContextProvider = ({ children }) => {
   const router = useRouter()
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  console.log(user)
 
   useEffect(() => {
     const token = localStorage.getItem('token')

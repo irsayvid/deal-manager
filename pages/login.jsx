@@ -108,136 +108,141 @@ export default function SignIn() {
   const handleOtpSubmit = () => {}
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5" mb={3}>
-            Sign in
-          </Typography>
-          <TabsUnstyled defaultValue={0}>
-            <TabsList>
-              <Tab>Login with password</Tab>
-              <Tab>Login with OTP</Tab>
-            </TabsList>
-            <TabPanel value={0}>
-              <Box
-                component="form"
-                onSubmit={handlePasswordSubmit}
-                noValidate
-                sx={{ mt: 1 }}
-              >
-                <TextField
-                  value={data.email}
-                  onChange={(e) =>
-                    setData((data) => ({ ...data, email: e.target.value }))
-                  }
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                />
-                <TextField
-                  value={data.password}
-                  onChange={(e) =>
-                    setData((data) => ({ ...data, password: e.target.value }))
-                  }
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                />
-                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
+    <Container
+      component="main"
+      sx={{ minHeight: '78vh', display: 'flex', alignItems: 'center' }}
+    >
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5" mb={3}>
+              Sign in
+            </Typography>
+            <TabsUnstyled defaultValue={0}>
+              <TabsList>
+                <Tab>Login with password</Tab>
+                <Tab>Login with OTP</Tab>
+              </TabsList>
+              <TabPanel value={0}>
+                <Box
+                  component="form"
+                  onSubmit={handlePasswordSubmit}
+                  noValidate
+                  sx={{ mt: 1 }}
+                >
+                  <TextField
+                    value={data.email}
+                    onChange={(e) =>
+                      setData((data) => ({ ...data, email: e.target.value }))
+                    }
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                  />
+                  <TextField
+                    value={data.password}
+                    onChange={(e) =>
+                      setData((data) => ({ ...data, password: e.target.value }))
+                    }
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
+                  <Grid container>
+                    <Grid item xs>
+                      <Link href="#" variant="body2">
+                        Forgot password?
+                      </Link>
+                    </Grid>
                   </Grid>
-                </Grid>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Sign In
+                  </Button>
+                </Box>
+              </TabPanel>
+              <TabPanel value={1}>
+                <Box
+                  component="form"
+                  onSubmit={handleOtpSubmit}
+                  noValidate
+                  sx={{ mt: 1 }}
                 >
-                  Sign In
-                </Button>
-              </Box>
-            </TabPanel>
-            <TabPanel value={1}>
-              <Box
-                component="form"
-                onSubmit={handleOtpSubmit}
-                noValidate
-                sx={{ mt: 1 }}
-              >
-                <TextField
-                  value={data.email}
-                  onChange={(e) =>
-                    setData((data) => ({ ...data, email: e.target.value }))
-                  }
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                />
-                <TextField
-                  value={data.otp}
-                  onChange={(e) =>
-                    setData((data) => ({ ...data, otp: e.target.value }))
-                  }
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="otp"
-                  label="OTP"
-                  name="otp"
-                  inputProps={{ inputMode: 'numeric', pattern: '^d{6}$' }}
-                  autoFocus
-                  disabled
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Send OTP
-                </Button>
-              </Box>
-            </TabPanel>
-          </TabsUnstyled>
-          <Grid container>
-            <Grid item>
-              New to this site?&nbsp;
-              <Link href="#" variant="body2">
-                {'Sign Up'}
-              </Link>
+                  <TextField
+                    value={data.email}
+                    onChange={(e) =>
+                      setData((data) => ({ ...data, email: e.target.value }))
+                    }
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                  />
+                  <TextField
+                    value={data.otp}
+                    onChange={(e) =>
+                      setData((data) => ({ ...data, otp: e.target.value }))
+                    }
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="otp"
+                    label="OTP"
+                    name="otp"
+                    inputProps={{ inputMode: 'numeric', pattern: '^d{6}$' }}
+                    autoFocus
+                    disabled
+                  />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Send OTP
+                  </Button>
+                </Box>
+              </TabPanel>
+            </TabsUnstyled>
+            <Grid container>
+              <Grid item>
+                New to this site?&nbsp;
+                <Link href="#" variant="body2">
+                  {'Sign Up'}
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </Box>
-      </Container>
-    </ThemeProvider>
+          </Box>
+        </Container>
+      </ThemeProvider>
+    </Container>
   )
 }
