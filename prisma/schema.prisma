@@ -24,32 +24,28 @@ model Dealer {
 
 model Driver {
   id                String   @id @default(cuid())
-  username          String
+  fullName          String
   email             String   @unique
   password          String
-  age               Int
+  age               String
   truckNumber       String
-  mobileNumber      String
-  truckCapacity     Int
+  mobile            String
+  capacity          String
   transporterName   String
-  drivingExperience Int
+  drivingExperience String
   createdAt         DateTime @default(now())
   updatedAt         DateTime @default(now())
   Route             Route[]
 }
 
 model Route {
-  id        String    @id @default(cuid())
-  state     String
-  city      String
-  routeType RouteType
+  id        String   @id @default(cuid())
+  fromState String
+  fromCity  String
+  toState   String
+  toCity    String
   driverId  String
-  driver    Driver    @relation(fields: [driverId], references: [id], onDelete: Cascade)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @default(now())
-}
-
-enum RouteType {
-  TO
-  FROM
+  driver    Driver   @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }

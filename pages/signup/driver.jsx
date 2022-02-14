@@ -12,6 +12,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import DriverInfo from './DriverInfo'
 import Main from './Main'
 import PreferredRoutes from './preferredRoutes'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+
 const steps = ['Basic Info', 'Vehicle & Experience', 'Preferred Routes']
 
 function StepContent({
@@ -38,8 +41,9 @@ function StepContent({
 const theme = createTheme()
 
 export default function Checkout() {
+  const router = useRouter()
+  const [loading, setLoading] = React.useState(false)
   const [activeStep, setActiveStep] = React.useState(0)
-
   const [mainValues, setMainValues] = React.useState({
     password: '',
     showPassword: false,
@@ -47,24 +51,41 @@ export default function Checkout() {
     email: '',
     mobile: '',
   })
-
   const [driverValues, setDriverValues] = React.useState({
     transporterName: '',
     capacity: '',
     drivingExperience: '',
     age: '',
+    truckNumber: '',
   })
 
   const [routes, setRoutes] = React.useState({
-    1: { fromState: 'asdfasd', fromCity: '', toState: '', toCity: '' },
+    1: { fromState: '', fromCity: '', toState: '', toCity: '' },
     2: { fromState: '', fromCity: '', toState: '', toCity: '' },
     3: { fromState: '', fromCity: '', toState: '', toCity: '' },
   })
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1)
+  const handleNext = async () => {
+    if (activeStep !== 2) {
+      setActiveStep(activeStep + 1)
+    }
     if (activeStep === 2) {
-      console.log(mainValues, driverValues, routes)
+      const data = {
+        ...mainValues,
+        ...driverValues,
+        routes: {
+          ...routes,
+        },
+      }
+      try {
+        setLoading(true)
+        await axios.post('/api/signup/driver', data)
+        setLoading(false)
+        router.push('/dashboard/driver')
+      } catch (err) {
+        setLoading(false)
+        console.log(err.message)
+      }
     }
   }
 
@@ -124,6 +145,7 @@ export default function Checkout() {
                     variant="contained"
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
+                    disabled={loading}
                   >
                     {activeStep === steps.length - 1 ? 'Sign Up' : 'Next'}
                   </Button>
