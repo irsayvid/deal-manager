@@ -1,6 +1,6 @@
 import '../styles/globals.css'
-import NavBar from './components/navbar'
-import Footer from './components/footer'
+import NavBar from '../components/navbar'
+import Footer from '../components/footer'
 import Container from '@mui/material/Container'
 function MyApp({ Component, pageProps }) {
   return (
