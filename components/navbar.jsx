@@ -4,14 +4,14 @@ import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import NextLink from 'next/link'
 import { useAuth } from './AuthContext'
+import { useRouter } from 'next/router'
 
 function PricingContent() {
   const { user, logout } = useAuth()
-  console.log(user)
+  const router = useRouter()
 
   return (
     <React.Fragment>
@@ -36,26 +36,24 @@ function PricingContent() {
               Deal Manager
             </Typography>
           </NextLink>
-          <nav>
-            <NextLink href="/">
-              <Link
-                variant="button"
-                color="text.primary"
-                underline="hover"
+          <nav></nav>
+          {user ? (
+            <>
+              <Button
+                variant="text"
+                onClick={() => router.push(`/dashboard/${user.type}`)}
                 sx={{ my: 1, mx: 1.5 }}
               >
-                Home
-              </Link>
-            </NextLink>
-          </nav>
-          {user ? (
-            <Button
-              variant="outlined"
-              onClick={() => logout()}
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Logout
-            </Button>
+                Dashboard
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={() => logout()}
+                sx={{ my: 1, mx: 1.5 }}
+              >
+                Logout
+              </Button>
+            </>
           ) : (
             <>
               <NextLink href="/signup">

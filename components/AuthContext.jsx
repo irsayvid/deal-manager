@@ -16,6 +16,7 @@ export const AuthContextProvider = ({ children }) => {
     const token = localStorage.getItem('token')
     if (token) {
       const decoded = jwt_decode(token)
+      console.log(decoded)
       if (decoded.exp * 1000 < Date.now()) {
         localStorage.removeItem('token')
         return

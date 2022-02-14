@@ -23,7 +23,11 @@ export default async function handler(req, res) {
       where: { email },
     })
 
-    if (user) {
+    const driverUser = await db.driver.findFirst({
+      where: { email },
+    })
+
+    if (user || driverUser) {
       return res.status(400).json({
         error: 'User already exists',
       })

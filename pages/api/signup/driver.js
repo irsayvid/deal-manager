@@ -24,7 +24,11 @@ export default async function handler(req, res) {
       where: { email },
     })
 
-    if (user) {
+    const dealerUser = await db.dealer.findFirst({
+      where: { email },
+    })
+
+    if (user || dealerUser) {
       return res.status(400).json({
         error: 'User already exists',
       })

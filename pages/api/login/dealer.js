@@ -9,36 +9,64 @@ import jwt from 'jsonwebtoken'
 export default async function handler(req, res) {
   const { email, password } = req.body
 
-  const user = await db.dealer.findFirst({
+  const dealerUser = await db.dealer.findFirst({
     where: {
       email,
     },
   })
 
-  if (!user) {
+  const driverUser = await db.driver.findFirst({
+    where: {
+      email,
+    },
+  })
+
+  if (!dealerUser && !driverUser) {
     return res.status(400).json({
       error: 'User does not exist',
     })
   }
 
-  if (!bcrypt.compareSync(password, user.password)) {
-    return res.status(400).json({
-      error: 'Password is incorrect',
-    })
-  }
-
-  const token = jwt.sign(
-    {
-      user: {
-        ...user,
-        type: 'dealer',
-      },
-    },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: '1d',
+  if (dealerUser && !driverUser) {
+    if (!bcrypt.compareSync(password, dealerUser.password)) {
+      return res.status(400).json({
+        error: 'Password is incorrect',
+      })
     }
-  )
 
-  res.status(200).json({ token })
+    const token = jwt.sign(
+      {
+        user: {
+          ...dealerUser,
+          type: 'dealer',
+        },
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: '1d',
+      }
+    )
+    res.status(200).json({ token })
+  }
+  if (!dealerUser && driverUser) {
+    if (!bcrypt.compareSync(password, driverUser.password)) {
+      return res.status(400).json({
+        error: 'Password is incorrect',
+      })
+    }
+
+    const token = jwt.sign(
+      {
+        user: {
+          ...driverUser,
+          type: 'driver',
+        },
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: '1d',
+      }
+    )
+    res.status(200).json({ token })
+  }
 }
