@@ -45,7 +45,23 @@ export default function DriverInfo({ values, setValues }) {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
-            value={values.capadrivingExperiencecity}
+            value={values.truckNumber}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                truckNumber: e.target.value,
+              }))
+            }
+            required
+            id="truckNumber"
+            label="Vechicle Number"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            value={values.drivingExperience}
             onChange={(e) =>
               setValues((values) => ({
                 ...values,
