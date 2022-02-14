@@ -9,18 +9,8 @@ import IconButton from '@mui/material/IconButton'
 import FormControl from '@mui/material/FormControl'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
-export default function Main() {
-  const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false,
-  })
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
+export default function Main({ values, setValues }) {
+  console.log(values)
 
   const handleClickShowPassword = () => {
     setValues({
@@ -41,6 +31,10 @@ export default function Main() {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={12}>
           <TextField
+            value={values.fullName}
+            onChange={(e) =>
+              setValues((values) => ({ ...values, fullName: e.target.value }))
+            }
             required
             id="fullName"
             name="fullName"
@@ -52,6 +46,10 @@ export default function Main() {
         </Grid>
         <Grid item xs={12} sm={12}>
           <TextField
+            value={values.email}
+            onChange={(e) =>
+              setValues((values) => ({ ...values, email: e.target.value }))
+            }
             required
             id="email"
             name="email"
@@ -63,6 +61,10 @@ export default function Main() {
         </Grid>
         <Grid item xs={12}>
           <TextField
+            value={values.mobile}
+            onChange={(e) =>
+              setValues((values) => ({ ...values, mobile: e.target.value }))
+            }
             required
             type="number"
             id="mobile"
@@ -82,7 +84,9 @@ export default function Main() {
               id="standard-adornment-password"
               type={values.showPassword ? 'text' : 'password'}
               value={values.password}
-              onChange={handleChange('password')}
+              onChange={(e) =>
+                setValues((values) => ({ ...values, password: e.target.value }))
+              }
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton

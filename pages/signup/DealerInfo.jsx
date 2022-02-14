@@ -3,7 +3,8 @@ import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 
-export default function DealerInfo() {
+export default function DealerInfo({ values, setValues }) {
+  console.log(values)
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -12,6 +13,13 @@ export default function DealerInfo() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
+            value={values.natureOfMaterial}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                natureOfMaterial: e.target.value,
+              }))
+            }
             required
             id="natureOfMaterial"
             label="Nature of Material"
@@ -21,6 +29,13 @@ export default function DealerInfo() {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
+            value={values.quantity}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                quantity: e.target.value,
+              }))
+            }
             required
             type="number"
             id="quantity"
@@ -32,6 +47,13 @@ export default function DealerInfo() {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
+            value={values.weight}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                weight: e.target.value,
+              }))
+            }
             required
             type="number"
             id="weight"
@@ -44,6 +66,13 @@ export default function DealerInfo() {
 
         <Grid item xs={12} sm={6}>
           <TextField
+            value={values.state}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                state: e.target.value,
+              }))
+            }
             required
             id="state"
             name="state"
@@ -54,6 +83,13 @@ export default function DealerInfo() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
+            value={values.city}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                city: e.target.value,
+              }))
+            }
             required
             id="city"
             name="city"

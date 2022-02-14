@@ -14,12 +14,18 @@ import Main from './Main'
 
 const steps = ['Basic Info', 'Material Info']
 
-function getStepContent(step) {
+function StepContent({
+  step,
+  mainValues,
+  setMainValues,
+  dealerValues,
+  setDealerValues,
+}) {
   switch (step) {
     case 0:
-      return <Main />
+      return <Main values={mainValues} setValues={setMainValues} />
     case 1:
-      return <DealerInfo />
+      return <DealerInfo values={dealerValues} setValues={setDealerValues} />
     default:
       throw new Error('Unknown step')
   }
@@ -30,8 +36,33 @@ const theme = createTheme()
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0)
 
+  const [mainValues, setMainValues] = React.useState({
+    password: '',
+    showPassword: false,
+    fullName: '',
+    email: '',
+    mobile: '',
+  })
+
+  const [dealerValues, setDealerValues] = React.useState({
+    natureOfMaterial: '',
+    quantity: '',
+    weight: '',
+    state: '',
+    city: '',
+  })
+
   const handleNext = () => {
-    setActiveStep(activeStep + 1)
+    if (activeStep === 0) {
+      setActiveStep(activeStep + 1)
+    }
+    if (activeStep === 1) {
+      const fullData = {
+        ...mainValues,
+        ...dealerValues,
+      }
+      console.log(fullData)
+    }
   }
 
   const handleBack = () => {
@@ -69,7 +100,13 @@ export default function Checkout() {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep)}
+                <StepContent
+                  step={activeStep}
+                  mainValues={mainValues}
+                  setMainValues={setMainValues}
+                  dealerValues={dealerValues}
+                  setDealerValues={setDealerValues}
+                />
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
