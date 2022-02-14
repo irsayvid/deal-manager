@@ -67,10 +67,9 @@ export default function Checkout() {
       }
       try {
         setLoding(true)
-        const res = await axios.post('/api/signup/dealer', fullData)
-        console.log(res.data)
+        await axios.post('/api/signup/dealer', fullData)
         setLoding(false)
-        router.push('/dashboard/dealer')
+        router.push('/login')
       } catch (err) {
         console.error(err.message)
         setLoding(false)

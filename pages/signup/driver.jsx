@@ -81,7 +81,7 @@ export default function Checkout() {
         setLoading(true)
         await axios.post('/api/signup/driver', data)
         setLoading(false)
-        router.push('/dashboard/driver')
+        router.push('/login')
       } catch (err) {
         setLoading(false)
         console.log(err.message)
