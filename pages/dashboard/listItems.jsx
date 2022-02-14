@@ -10,6 +10,10 @@ import BarChartIcon from '@mui/icons-material/BarChart'
 import LayersIcon from '@mui/icons-material/Layers'
 import AssignmentIcon from '@mui/icons-material/Assignment'
 
+export default function List() {
+  return <div></div>
+}
+
 export const mainListItems = (
   <React.Fragment>
     <ListItemButton>
