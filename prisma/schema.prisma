@@ -9,13 +9,13 @@ datasource db {
 
 model Dealer {
   id               String   @id @default(cuid())
-  username         String
+  fullName         String
   email            String   @unique
   password         String
-  mobileNumber     String
-  materialType     String
-  weightOfMaterial Int
-  quantity         Int
+  mobile           String
+  natureOfMaterial String
+  weight           String
+  quantity         String
   city             String
   state            String
   createdAt        DateTime @default(now())

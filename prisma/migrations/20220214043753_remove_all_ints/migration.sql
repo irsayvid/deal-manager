@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Dealer" ALTER COLUMN "quantity" SET DATA TYPE TEXT,
+ALTER COLUMN "weight" SET DATA TYPE TEXT;

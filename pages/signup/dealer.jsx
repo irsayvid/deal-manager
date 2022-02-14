@@ -11,6 +11,8 @@ import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import DealerInfo from './DealerInfo'
 import Main from './Main'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 
 const steps = ['Basic Info', 'Material Info']
 
@@ -34,6 +36,7 @@ function StepContent({
 const theme = createTheme()
 
 export default function Checkout() {
+  const router = useRouter()
   const [activeStep, setActiveStep] = React.useState(0)
 
   const [mainValues, setMainValues] = React.useState({
@@ -51,8 +54,9 @@ export default function Checkout() {
     state: '',
     city: '',
   })
+  const [loading, setLoding] = React.useState(false)
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (activeStep === 0) {
       setActiveStep(activeStep + 1)
     }
@@ -61,7 +65,16 @@ export default function Checkout() {
         ...mainValues,
         ...dealerValues,
       }
-      console.log(fullData)
+      try {
+        setLoding(true)
+        const res = await axios.post('/api/signup/dealer', fullData)
+        console.log(res.data)
+        setLoding(false)
+        router.push('/dashboard/dealer')
+      } catch (err) {
+        console.error(err.message)
+        setLoding(false)
+      }
     }
   }
 
@@ -118,6 +131,7 @@ export default function Checkout() {
                     variant="contained"
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
+                    disabled={loading}
                   >
                     {activeStep === steps.length - 1 ? 'Sign Up' : 'Next'}
                   </Button>
