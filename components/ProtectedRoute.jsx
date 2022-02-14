@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
-import { useAuth } from '../../components/AuthContext'
+import { useAuth } from './AuthContext'
 
-const DealerDashboard = () => {
+const ProtectedRoute = ({ children }) => {
   const router = useRouter()
   const { user } = useAuth()
 
@@ -13,8 +13,7 @@ const DealerDashboard = () => {
   }, [router, user])
 
   if (!user) return null
-
-  return <div>DealerDashboard</div>
+  return <div>{children}</div>
 }
 
-export default DealerDashboard
+export default ProtectedRoute

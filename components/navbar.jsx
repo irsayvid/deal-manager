@@ -7,8 +7,12 @@ import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import NextLink from 'next/link'
+import { useAuth } from './AuthContext'
 
 function PricingContent() {
+  const { user, logout } = useAuth()
+  console.log(user)
+
   return (
     <React.Fragment>
       <GlobalStyles
@@ -44,16 +48,28 @@ function PricingContent() {
               </Link>
             </NextLink>
           </nav>
-          <NextLink href="/signup">
-            <Button variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-              Signup
+          {user ? (
+            <Button
+              variant="outlined"
+              onClick={() => logout()}
+              sx={{ my: 1, mx: 1.5 }}
+            >
+              Logout
             </Button>
-          </NextLink>
-          <NextLink href="/login">
-            <Button variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-              Login
-            </Button>
-          </NextLink>
+          ) : (
+            <>
+              <NextLink href="/signup">
+                <Button variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+                  Signup
+                </Button>
+              </NextLink>
+              <NextLink href="/login">
+                <Button variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+                  Login
+                </Button>
+              </NextLink>
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </React.Fragment>

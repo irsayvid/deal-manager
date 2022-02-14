@@ -16,6 +16,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { useAuth } from '../components/AuthContext'
 
 const blue = {
   50: '#F0F7FF',
@@ -87,15 +88,24 @@ const TabsList = styled(TabsListUnstyled)`
 const theme = createTheme()
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const { login } = useAuth()
+  const [data, setData] = React.useState({
+    email: '',
+    password: '',
+    opt: '',
+  })
+
+  const handlePasswordSubmit = async (event) => {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
+    const formData = new FormData(event.currentTarget)
+    const data = {
+      email: formData.get('email'),
+      password: formData.get('password'),
+    }
+    login(data)
   }
+
+  const handleOtpSubmit = () => {}
 
   return (
     <ThemeProvider theme={theme}>
@@ -122,11 +132,15 @@ export default function SignIn() {
             <TabPanel value={0}>
               <Box
                 component="form"
-                onSubmit={handleSubmit}
+                onSubmit={handlePasswordSubmit}
                 noValidate
                 sx={{ mt: 1 }}
               >
                 <TextField
+                  value={data.email}
+                  onChange={(e) =>
+                    setData((data) => ({ ...data, email: e.target.value }))
+                  }
                   margin="normal"
                   required
                   fullWidth
@@ -137,6 +151,10 @@ export default function SignIn() {
                   autoFocus
                 />
                 <TextField
+                  value={data.password}
+                  onChange={(e) =>
+                    setData((data) => ({ ...data, password: e.target.value }))
+                  }
                   margin="normal"
                   required
                   fullWidth
@@ -166,11 +184,15 @@ export default function SignIn() {
             <TabPanel value={1}>
               <Box
                 component="form"
-                onSubmit={handleSubmit}
+                onSubmit={handleOtpSubmit}
                 noValidate
                 sx={{ mt: 1 }}
               >
                 <TextField
+                  value={data.email}
+                  onChange={(e) =>
+                    setData((data) => ({ ...data, email: e.target.value }))
+                  }
                   margin="normal"
                   required
                   fullWidth
@@ -181,6 +203,10 @@ export default function SignIn() {
                   autoFocus
                 />
                 <TextField
+                  value={data.otp}
+                  onChange={(e) =>
+                    setData((data) => ({ ...data, otp: e.target.value }))
+                  }
                   margin="normal"
                   required
                   fullWidth
