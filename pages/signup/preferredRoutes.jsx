@@ -3,7 +3,8 @@ import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import PreferredRoute from '../../components/PreRoute'
 
-export default function preferredRoutes() {
+export default function preferredRoutes({ routes, setRoutes }) {
+  console.log(routes)
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -11,7 +12,12 @@ export default function preferredRoutes() {
       </Typography>
       <Grid container spacing={3}>
         {Array.from({ length: 3 }).map((_, i) => (
-          <PreferredRoute key={i} id={i + 1} />
+          <PreferredRoute
+            route={routes[i + 1]}
+            setRoutes={setRoutes}
+            key={i}
+            id={i + 1}
+          />
         ))}
       </Grid>
     </React.Fragment>

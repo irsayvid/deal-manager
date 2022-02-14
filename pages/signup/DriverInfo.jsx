@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 
-export default function DriverInfo() {
+export default function DriverInfo({ values, setValues }) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -12,6 +12,13 @@ export default function DriverInfo() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
+            value={values.transporterName}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                transporterName: e.target.value,
+              }))
+            }
             required
             id="transporterName"
             label="Transporter Name"
@@ -21,6 +28,13 @@ export default function DriverInfo() {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
+            value={values.capacity}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                capacity: e.target.value,
+              }))
+            }
             required
             id="capacity"
             label="Vehicle Capacity"
@@ -31,6 +45,13 @@ export default function DriverInfo() {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
+            value={values.capadrivingExperiencecity}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                drivingExperience: e.target.value,
+              }))
+            }
             required
             id=" drivingExperience"
             label="Driving Experience"
@@ -41,8 +62,15 @@ export default function DriverInfo() {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
+            value={values.age}
+            onChange={(e) =>
+              setValues((values) => ({
+                ...values,
+                age: e.target.value,
+              }))
+            }
             required
-            id=" age"
+            id="age"
             label="Age"
             fullWidth
             variant="standard"

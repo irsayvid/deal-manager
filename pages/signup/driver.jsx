@@ -14,14 +14,22 @@ import Main from './Main'
 import PreferredRoutes from './preferredRoutes'
 const steps = ['Basic Info', 'Vehicle & Experience', 'Preferred Routes']
 
-function getStepContent(step) {
+function StepContent({
+  step,
+  mainValues,
+  setMainValues,
+  driverValues,
+  setDriverValues,
+  routes,
+  setRoutes,
+}) {
   switch (step) {
     case 0:
-      return <Main />
+      return <Main values={mainValues} setValues={setMainValues} />
     case 1:
-      return <DriverInfo />
+      return <DriverInfo values={driverValues} setValues={setDriverValues} />
     case 2:
-      return <PreferredRoutes />
+      return <PreferredRoutes routes={routes} setRoutes={setRoutes} />
     default:
       throw new Error('Unknown step')
   }
@@ -32,8 +40,32 @@ const theme = createTheme()
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0)
 
+  const [mainValues, setMainValues] = React.useState({
+    password: '',
+    showPassword: false,
+    fullName: '',
+    email: '',
+    mobile: '',
+  })
+
+  const [driverValues, setDriverValues] = React.useState({
+    transporterName: '',
+    capacity: '',
+    drivingExperience: '',
+    age: '',
+  })
+
+  const [routes, setRoutes] = React.useState({
+    1: { fromState: 'asdfasd', fromCity: '', toState: '', toCity: '' },
+    2: { fromState: '', fromCity: '', toState: '', toCity: '' },
+    3: { fromState: '', fromCity: '', toState: '', toCity: '' },
+  })
+
   const handleNext = () => {
     setActiveStep(activeStep + 1)
+    if (activeStep === 2) {
+      console.log(mainValues, driverValues, routes)
+    }
   }
 
   const handleBack = () => {
@@ -72,7 +104,15 @@ export default function Checkout() {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep)}
+                <StepContent
+                  step={activeStep}
+                  mainValues={mainValues}
+                  setMainValues={setMainValues}
+                  driverValues={driverValues}
+                  setDriverValues={setDriverValues}
+                  routes={routes}
+                  setRoutes={setRoutes}
+                />{' '}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>

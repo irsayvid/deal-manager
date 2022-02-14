@@ -10,8 +10,6 @@ import FormControl from '@mui/material/FormControl'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 export default function Main({ values, setValues }) {
-  console.log(values)
-
   const handleClickShowPassword = () => {
     setValues({
       ...values,
